@@ -3,18 +3,15 @@ import { useState } from 'react'
 import { DropDownList } from '@progress/kendo-react-dropdowns'
 import { filterBy } from '@progress/kendo-data-query'
 
-export default function NewApp() {
-  const sizes = ['X-Small', 'Small', 'Medium', 'Large', 'X-Large', '2X-Large']
-  const [data, setData] = useState(sizes)
-
+export default function NewApp({ repos }) {
   const filterChange = ({ filter }) => {
-    setData(filterBy(sizes.slice(), filter))
+    setData(filterBy(repos.slice(), filter))
   }
 
   return (
     <>
       <h2>Select the GitHub repository you want to deploy</h2>
-      <div>
+      <div className="info">
         Can't see your repository here?{' '}
         <Link href="https://github.com/apps/tekton-kn-app/installations/new">
           <a>Configure the GitHub app permission</a>
@@ -23,7 +20,7 @@ export default function NewApp() {
       <div>
         <DropDownList
           style={{ width: '26rem', margin: '1rem' }}
-          data={data}
+          data={repos}
           filterable={true}
           onFilterChange={filterChange}
         />
@@ -40,6 +37,10 @@ export default function NewApp() {
           a:focus,
           a:active {
             text-decoration: underline;
+          }
+
+          .info {
+            font-style: italic;
           }
         `}
       </style>

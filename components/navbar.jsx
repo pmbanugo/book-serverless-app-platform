@@ -3,6 +3,8 @@ import {
   AppBarSection,
   AppBarSpacer,
 } from '@progress/kendo-react-layout'
+import { Button } from '@progress/kendo-react-buttons'
+import Link from 'next/link'
 
 export default () => (
   <>
@@ -20,15 +22,16 @@ export default () => (
       <AppBarSection>
         <ul>
           <li>
-            <span>Apps</span>
+            <Link href="/">
+              <span>Services</span>
+            </Link>
+          </li>
+          <li>
+            <Link href="/new">
+              <span>New</span>
+            </Link>
           </li>
         </ul>
-      </AppBarSection>
-
-      <AppBarSpacer />
-
-      <AppBarSection>
-        <button>Create New</button>
       </AppBarSection>
     </AppBar>
     <style jsx>{`

@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 import '@progress/kendo-theme-bootstrap/dist/all.css'
-import Navbar from '../components/navbar'
+import NavBar from '../components/NavBar'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Navbar />
+      <NavBar />
       <main className="main">
         <Component {...pageProps} />
       </main>

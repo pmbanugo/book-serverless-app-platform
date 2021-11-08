@@ -8,15 +8,19 @@ export default function Home() {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid
-        style={{ width: '50%' }}
-        data={[
-          { Name: 'One', Url: 'url.com' },
-          { Name: 'Two', Url: 'url.com' },
-        ]}
-      >
+      <h1>Services </h1>
+      <Grid style={{ width: '55rem' }} data={[]}>
         <GridColumn field="Name" />
-        <GridColumn field="Url" />
+        <GridColumn
+          field="Url"
+          cell={(props) => (
+            <td>
+              <a target="_blank" rel="noopener noreferrer" href={props.field}>
+                {props.field}
+              </a>
+            </td>
+          )}
+        />
       </Grid>
     </>
   )
