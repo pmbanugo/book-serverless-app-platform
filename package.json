@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "smee": "node smee.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "12.0.1"
+    "eslint-config-next": "12.0.1",
+    "smee-client": "^1.2.2"
   }
 }
