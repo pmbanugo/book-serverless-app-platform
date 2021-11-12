@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Grid, GridColumn } from '@progress/kendo-react-grid'
 import { Button } from '@progress/kendo-react-buttons'
 
-import { source } from '../smee'
+import { source } from '../smee/config'
 
 export async function getStaticProps() {
   return {

@@ -1,5 +1,5 @@
 const SmeeClient = require('smee-client')
-export const source = 'https://smee.io/YndHjh3o5XUPhNoK'
+const { source } = require('./config.js')
 
 const smee = new SmeeClient({
   source,

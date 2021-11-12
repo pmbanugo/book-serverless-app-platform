@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { writeFile } from 'fs/promises'
-import { source } from '../smee'
+import { source } from '../smee/config'
 
 export async function getServerSideProps({ query }) {
   let succeeded = false
