@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { DropDownList } from '@progress/kendo-react-dropdowns'
 import { filterBy } from '@progress/kendo-data-query'
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
   return {
     props: { githubAppUrl: process.env.APP_URL },
   }
