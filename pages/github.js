@@ -11,6 +11,7 @@ export async function getServerSideProps({ query }) {
       )
 
       const env = `APP_ID=${data.id}
+APP_URL=${data.html_url}
 WEBHOOK_PROXY_URL=${source}
 WEBHOOK_SECRET=${data.webhook_secret}
 GITHUB_CLIENT_ID=${data.client_id}
