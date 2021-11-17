@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { DropDownList } from '@progress/kendo-react-dropdowns'
 import { filterBy } from '@progress/kendo-data-query'
+import { serialize } from "../util/cookie";
 
 export const getServerSideProps = async (context) => {
   return {
