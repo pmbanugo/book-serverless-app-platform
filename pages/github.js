@@ -16,7 +16,7 @@ WEBHOOK_PROXY_URL=${source}
 WEBHOOK_SECRET=${data.webhook_secret}
 GITHUB_CLIENT_ID=${data.client_id}
 GITHUB_CLIENT_SECRET=${data.client_secret}
-PRIVATE_KEY="${data.pem}"
+PRIVATE_KEY="${data.pem.replace(/\n/gm, '\\n')}"
 `
       await writeFile(`${process.cwd()}/.env.local`, env)
       succeeded = true

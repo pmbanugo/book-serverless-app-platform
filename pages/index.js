@@ -18,7 +18,8 @@ export default function Home({ showCreateAppButton }) {
       url: source,
     },
     redirect_url: 'http://localhost:3000/github',
-    callback_urls: ['http://localhost:3000/new'],
+    setup_url: 'http://localhost:3000/new',
+    setup_on_update: true,
     public: true,
     default_permissions: {
       contents: 'read',
