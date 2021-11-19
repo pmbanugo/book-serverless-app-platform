@@ -9,15 +9,12 @@ import { Input } from '@progress/kendo-react-inputs'
 
 import FormGrid from '../components/FormGrid'
 
-export default function Deploy() {
-  const gitBranches = []
-
+export default function Deploy({ branches, installationId }) {
   const handleSubmit = (dataItem) => alert(JSON.stringify(dataItem, null, 2))
 
   return (
     <>
       <h2>Deploy App</h2>
-
       <Form
         initialValues={{
           environmentVariables: [],
@@ -34,6 +31,7 @@ export default function Deploy() {
                   name="branch"
                   component={DropDownList}
                   data={gitBranches}
+                  textField="name"
                   label={'Select the branch to deploy'}
                 />
               </div>
