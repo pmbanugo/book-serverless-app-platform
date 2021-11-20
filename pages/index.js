@@ -3,10 +3,20 @@ import { Grid, GridColumn } from '@progress/kendo-react-grid'
 import { Button } from '@progress/kendo-react-buttons'
 
 import { source } from '../smee/config'
+import { getServices } from '../repository'
+import { parse } from 'cookie'
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  const cookies = parse(context.req.headers?.cookie || '')
+  const installationId = cookies['installationId']
+  const data = await getServices(installationId)
+  const services = data.map((service) => ({
+    Name: service.serviceName,
+    Url: `https://${service.serviceName}.default.64.225.92.30.sslip.io`,
+  }))
+
   return {
-    props: { showCreateAppButton: !process.env.APP_ID },
+    props: { showCreateAppButton: !process.env.APP_ID, services },
   }
 }
 
