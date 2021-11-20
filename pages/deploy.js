@@ -49,7 +49,29 @@ export const getServerSideProps = async (context) => {
 }
 
 export default function Deploy({ branches, installationId }) {
-  const handleSubmit = (dataItem) => alert(JSON.stringify(dataItem, null, 2))
+  const router = useRouter()
+
+  const handleSubmit = (formData) => {
+    const { environmentVariables, sourceDirectory, branch } = formData
+    const serviceName = generateSlug(2)
+    const selectedRepo = JSON.parse(localStorage.getItem('selectedRepo'))
+
+    const service = {
+      installationId,
+      serviceName,
+      repoUrl: selectedRepo.url,
+      branch: branch.name,
+      sourceDirectory,
+      environmentVariables,
+    }
+
+    try {
+      await axios.post('/api/deploy', service)
+      router.push('/')
+    } catch (error) {
+      alert('Failed to deploy site!!')
+    }
+  }
 
   return (
     <>
