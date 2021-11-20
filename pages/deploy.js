@@ -30,7 +30,7 @@ export default function Deploy({ branches, installationId }) {
                 <Field
                   name="branch"
                   component={DropDownList}
-                  data={gitBranches}
+                  data={branches}
                   textField="name"
                   label={'Select the branch to deploy'}
                 />
