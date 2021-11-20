@@ -4,7 +4,7 @@ import { Button } from '@progress/kendo-react-buttons'
 
 import { source } from '../smee/config'
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   return {
     props: { showCreateAppButton: !process.env.APP_ID },
   }
