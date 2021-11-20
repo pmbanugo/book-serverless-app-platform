@@ -10,7 +10,7 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Home({ showCreateAppButton }) {
+export default function Home({ showCreateAppButton, services }) {
   const settings = {
     name: 'Serverless App Platform',
     url: 'https://www.example.com', // The homepage for your App's website
@@ -49,18 +49,17 @@ export default function Home({ showCreateAppButton }) {
       {!showCreateAppButton && (
         <>
           <h1>Services </h1>
-          <Grid style={{ width: '55rem' }} data={[]}>
+          <Grid style={{ width: '55rem' }} data={services}>
             <GridColumn field="Name" />
             <GridColumn
-              field="Url"
-              cell={(props) => (
+              cell={({ dataItem }) => (
                 <td>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={props.field}
+                    href={dataItem.Url}
                   >
-                    {props.field}
+                    {dataItem.Url}
                   </a>
                 </td>
               )}
