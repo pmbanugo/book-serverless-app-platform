@@ -9,6 +9,45 @@ import { Input } from '@progress/kendo-react-inputs'
 
 import FormGrid from '../components/FormGrid'
 
+import { useRouter } from 'next/router'
+import { parse } from 'cookie'
+import { App } from 'octokit'
+import axios from 'axios'
+import { generateSlug } from 'random-word-slugs'
+
+export const getServerSideProps = async (context) => {
+  const { repo, owner } = context.query
+  const appId = process.env.APP_ID
+  const privateKey = process.env.PRIVATE_KEY
+
+  let branches = null
+  let installationId = null
+
+  if (owner && repo && appId && privateKey) {
+    const app = new App({
+      appId,
+      privateKey,
+    })
+    const cookies = parse(context.req.headers?.cookie || '')
+    installationId = cookies['installationId']
+
+    branches = []
+    const appOctokit = await app.getInstallationOctokit(installationId)
+    const { data } = await appOctokit.rest.repos.listBranches({
+      owner: owner,
+      repo: repo,
+    })
+
+    branches = data.map((branch) => ({
+      name: branch.name,
+      commit: branch.commit.sha,
+    }))
+  }
+  return {
+    props: { branches, installationId },
+  }
+}
+
 export default function Deploy({ branches, installationId }) {
   const handleSubmit = (dataItem) => alert(JSON.stringify(dataItem, null, 2))
 
