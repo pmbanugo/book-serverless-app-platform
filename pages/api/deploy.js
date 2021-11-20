@@ -11,6 +11,7 @@ export default async function handler(req, res) {
   await axios.post(tektonService, {
     ...data,
     environmentVariables: env,
+    revision: data.branch,
   })
   console.log(`Deployed ${data.serviceName}`)
 
