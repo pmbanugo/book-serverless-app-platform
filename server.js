@@ -3,8 +3,7 @@ const { parse } = require('url')
 const next = require('next')
 const path = require('path')
 require('dotenv').config({ path: path.resolve(process.cwd(), '.env.local') })
-const { connect, getService, getEnv } = require('./repository.js')
-const { transformEnvironmentVariables } = require('./util/env.js')
+const { connect, getService } = require('./repository.js')
 const { App } = require('octokit')
 const axios = require('axios').default
 
@@ -35,17 +34,11 @@ app
 
       //verify that the ref matches the branch we need to deploy.
       if (service.branch == branch) {
-        //Tip: for webhooks, use a separate pipeline that does `kn service update` without specifying --env. This is only to update the image.
-        const environmentVariables = transformEnvironmentVariables(
-          await getEnv(installationId, repoUrl)
-        )
-
         const tektonPayload = {
           repoUrl,
           revision: payload.head_commit.id,
           sourceDirectory: service.sourceDirectory ?? '',
           serviceName: service.serviceName,
-          environmentVariables,
         }
 
         await axios.post(process.env.TEKTON, tektonPayload)
@@ -64,6 +57,8 @@ app
           signature: req.headers['x-hub-signature-256'],
           payload: payload,
         })
+        res.statusCode = 200
+        res.end()
       } else {
         handle(req, res, parsedUrl)
       }

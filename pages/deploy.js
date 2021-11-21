@@ -51,7 +51,7 @@ export const getServerSideProps = async (context) => {
 export default function Deploy({ branches, installationId }) {
   const router = useRouter()
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = async (formData) => {
     const { environmentVariables, sourceDirectory, branch } = formData
     const serviceName = generateSlug(2)
     const selectedRepo = JSON.parse(localStorage.getItem('selectedRepo'))

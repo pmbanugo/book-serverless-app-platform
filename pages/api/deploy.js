@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { transformEnvironmentVariables } from '../../util/env'
 import { addEnv, addService } from '../../repository'
 
@@ -17,4 +18,5 @@ export default async function handler(req, res) {
 
   await addService(data)
   await addEnv(data)
+  res.status(200).end()
 }
