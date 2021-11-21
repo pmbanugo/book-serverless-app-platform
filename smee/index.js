@@ -1,4 +1,3 @@
-const closeWithGrace = require('close-with-grace')
 const SmeeClient = require('smee-client')
 const { source } = require('./config.js')
 
@@ -8,12 +7,4 @@ const smee = new SmeeClient({
   logger: console,
 })
 
-const events = smee.start()
-
-closeWithGrace({ delay: 500 }, ({ err }) => {
-  if (err) {
-    console.error(err)
-  }
-
-  events.close()
-})
+smee.start()
